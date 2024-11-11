@@ -1,4 +1,4 @@
-# Near Real-Time Sensor Data Dashboard
+# Near Real-Time Data Dashboard
 
 This project provides a real-time dashboard for visualizing data from various sensors. The data pipeline consists of several phases including data ingestion, processing, storage, and visualization, offering a comprehensive overview of sensor data.
 
