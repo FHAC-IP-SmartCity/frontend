@@ -28,9 +28,7 @@ This project provides a real-time dashboard for visualizing data from various se
 **Goal**: Efficiently store parsed data for near real-time dashboard access.
 
 **Tools**:
-- **InfluxDB**: A time-series database optimized for real-time data, supporting fast retrieval.
-- **InfluxDB Python Client**: Connects and interacts with InfluxDB directly from the Python script.
-
+- **PostgresSQL**
 ---
 
 ### Phase 4: Real-Time Data Visualization
