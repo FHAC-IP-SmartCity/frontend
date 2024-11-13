@@ -36,7 +36,7 @@ This project provides a real-time dashboard for visualizing data from various se
 
 **Tools**:
 - **Grafana**: Visualization tool with customizable widgets for data representation (e.g., counters for parking spots).
-- **Grafana Data Source (InfluxDB)**: Native integration with InfluxDB for seamless data retrieval and visualization.
+- **Grafana Data Source (postgres DB)**: Native integration with InfluxDB for seamless data retrieval and visualization.
 
 ---
 
@@ -46,7 +46,7 @@ This project provides a real-time dashboard for visualizing data from various se
 **Tools**:
 - **Logging and Monitoring**: Python logging for pipeline issues and Grafana alerts to monitor data thresholds.
 - **Grafana Query Optimization**: Fine-tune Grafana queries for performance.
-- **InfluxDB Configuration**: Adjust retention policies and indexing to enhance efficiency.
+- **Postgres_DB Configuration**: Adjust retention policies and indexing to enhance efficiency.
 
 ---
 
