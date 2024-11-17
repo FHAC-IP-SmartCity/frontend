@@ -18,6 +18,7 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
     res.send('POST request to the homepage');
     console.log(req.headers);
+    //TODO: The body is empty
     console.log(req.body);
 });
 
