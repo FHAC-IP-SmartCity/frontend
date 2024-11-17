@@ -1,0 +1,17 @@
+{
+  "name": "chartjs",
+  "version": "1.0.0",
+  "main": "src/app.js",
+  "dependencies": {
+    "chart.js": "^4.4.6",
+    "ejs": "^3.1.10",
+    "express": "^4.21.1",
+    "body-parser": "^1.20.2"
+  },
+  "scripts": {
+    "start": "node src/app.js"
+  },
+  "author": "Amier Shraideh",
+  "license": "ISC",
+  "description": "An example web app using Chart.js and Express.js for the frontend."
+}
