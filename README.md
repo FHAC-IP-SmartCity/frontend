@@ -1,61 +1,46 @@
-# Near Real-Time Data Dashboard
+# ChartJs Project
 
-This project provides a real-time dashboard for visualizing data from various sensors. The data pipeline consists of several phases including data ingestion, processing, storage, and visualization, offering a comprehensive overview of sensor data.
+## Introduction
+This project uses Chart.js to create interactive charts. Follow the instructions below to initialize and start the project.
 
----
+It was created for the Smart City Demonstrator project at Aachen University of Applied Sciences
 
-## Project Phases and Tools
+## Prerequisites
+- Node.js (v14 or higher)
+- npm (v6 or higher)
 
-### Phase 1: Initial Setup and Hardware Integration
-**Goal**: Establish a reliable connection between sensors and the computer, ensuring data can be read via UART.
+## Installation
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/yourusername/ChartJs.git
+    ```
+2. Navigate to the project directory:
+    ```sh
+    cd ChartJs
+    ```
+3. Install the dependencies:
+    ```sh
+    npm install
+    ```
 
-**Tools**:
-- **UART**: Hardware communication protocol for data transfer.
-- **Python (PySerial)**: Handles UART serial communication to read and process sensor data in real-time.
+## Running the Project
+1. Start the development server:
+    ```sh
+    npm start
+    ```
+2. Open your browser and navigate to `http://localhost:3000` to view the project.
 
----
+## Building for Production
+To create a production build, run:
+```sh
+npm run build
+```
+The output will be in the `dist` directory.
 
-### Phase 2: Data Collection and Preprocessing
-**Goal**: Collect, parse, and prepare sensor data for storage.
+## Useful Scripts
+- `npm start`: Starts the development server.
+- `npm run build`: Builds the project for production.
+- `npm test`: Runs the test suite.
 
-**Tools**:
-- **PySerial**: Continuously reads and buffers incoming serial data.
-- **Python Script**: Parses and structures raw data (e.g., JSON or dictionary format).
-
----
-
-### Phase 3: Database Setup and Data Storage
-**Goal**: Efficiently store parsed data for near real-time dashboard access.
-
-**Tools**:
-- **PostgresSQL**
----
-
-### Phase 4: Real-Time Data Visualization
-**Goal**: Display sensor data in real-time on a user-friendly dashboard.
-
-**Tools**:
-- **Grafana**: Visualization tool with customizable widgets for data representation (e.g., counters for parking spots).
-- **Grafana Data Source (postgres DB)**: Native integration with InfluxDB for seamless data retrieval and visualization.
-
----
-
-### Phase 5: Testing and Optimization
-**Goal**: Test the setup, optimize performance, and address issues like data loss or slow updates.
-
-**Tools**:
-- **Logging and Monitoring**: Python logging for pipeline issues and Grafana alerts to monitor data thresholds.
-- **Grafana Query Optimization**: Fine-tune Grafana queries for performance.
-- **Postgres_DB Configuration**: Adjust retention policies and indexing to enhance efficiency.
-
----
-
-### Phase 6: Deployment and Maintenance
-**Goal**: Deploy the project for continuous operation and establish maintenance mechanisms.
-
-**Tools**:
-- **Docker (optional)**: Containerize Python, InfluxDB, and Grafana for consistent and simplified deployment.
-- **System Monitoring Tools**: Set up alerts for component interruptions and monitor service health.
-- **Automated Restart**: Use cron jobs or service scripts to restart scripts automatically if interrupted.
-
----
+## Contributing
+Contributions are welcome! Please open an issue or submit a pull request.
