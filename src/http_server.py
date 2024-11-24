@@ -38,12 +38,12 @@ def receive_data():
         print("Error processing request:", str(e))
         return jsonify({"error": str(e)}), 500
 
-
+# for JSON structure in webpage
 @app.route('/data', methods=['GET'])
 def get_data():
     return jsonify(data_buffer), 200
 
-
+# for HTML structure in webpage
 # @app.route('/data', methods=['GET'])
 # def get_data():
 #     return render_template('data.html', data=data_buffer)
