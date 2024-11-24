@@ -1,4 +1,4 @@
-# frontend-development
+# Frontend-Development
 
 ## Introduction
 Follow the instructions below to initialize and start the project.
