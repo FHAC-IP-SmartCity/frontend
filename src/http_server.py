@@ -1,4 +1,5 @@
-from flask import Flask, request, jsonify
+from flask import Flask, jsonify
+from flask import request,render_template
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -36,6 +37,16 @@ def receive_data():
         # Log unexpected errors and respond with a 500 status
         print("Error processing request:", str(e))
         return jsonify({"error": str(e)}), 500
+
+
+@app.route('/data', methods=['GET'])
+def get_data():
+    return jsonify(data_buffer), 200
+
+
+# @app.route('/data', methods=['GET'])
+# def get_data():
+#     return render_template('data.html', data=data_buffer)
 
 
 # Run the server on port 3000
