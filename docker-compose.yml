@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:15
+    container_name: Smart-City
+    environment:
+      POSTGRES_USER: ip
+      POSTGRES_PASSWORD: smartcity
+      POSTGRES_DB: smartcitydb
+    ports:
+      - "3021:5432"
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
