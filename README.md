@@ -1,46 +1,20 @@
-# ChartJs Project
+# Phase 1: Data Ingestion
 
-## Introduction
-This project uses Chart.js to create interactive charts. Follow the instructions below to initialize and start the project.
-
-It was created for the Smart City Demonstrator project at Aachen University of Applied Sciences
-
-## Prerequisites
-- Node.js (v14 or higher)
-- npm (v6 or higher)
-
-## Installation
-1. Clone the repository:
-    ```sh
-    git clone https://github.com/yourusername/ChartJs.git
-    ```
-2. Navigate to the project directory:
-    ```sh
-    cd ChartJs
-    ```
-3. Install the dependencies:
-    ```sh
-    npm install
-    ```
-
-## Running the Project
-1. Start the development server:
-    ```sh
-    npm start
-    ```
-2. Open your browser and navigate to `http://localhost:3000` to view the project.
-
-## Building for Production
-To create a production build, run:
-```sh
-npm run build
-```
-The output will be in the `dist` directory.
-
-## Useful Scripts
-- `npm start`: Starts the development server.
-- `npm run build`: Builds the project for production.
-- `npm test`: Runs the test suite.
-
-## Contributing
-Contributions are welcome! Please open an issue or submit a pull request.
+## Goal
+Establish a system to receive sensor data from the Proto app via HTTP POST requests in JSON format (or another format, as determined with the backend team).
+---
+## Tasks
+1. Set up an HTTP server to receive incoming data.
+2. Validate incoming JSON packets for: Completeness, Correctness
+3. Temporarily store the raw or validated data: 
+   - In memory
+   - in a shared folder (to be determined).
+---
+## Tools
+- **[Flask](https://flask.palletsprojects.com/):** A lightweight Python framework for hosting the HTTP server.
+  - Preferred over Node.js to keep the project fully in Python.
+- **[Proto.exe]:** For testing the POST request functionality.
+---
+## Outcome
+- JSON packets are successfully received and ingested.
+- Data is validated and ready for the preprocessing phase.
