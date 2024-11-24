@@ -66,14 +66,16 @@ Analyze the stored data and provide meaningful visualizations through a Grafana 
 - Create custom dashboards to display important insights
 ### Tools:
 - Grafana: To create and manage dashboards.
+- PostgreSQL: Data storage and query source.
+- Docker Compose: Simplified management of multi-container applications.
 ### Steps:
 1. Pull the Grafana Docker container:
    ```bash
    docker pull grafana/grafana
    ```
-2. Run the Grafana Docker container:
+2. Start the Grafana service:
    ```bash
-   docker run -d -p 3000:3000 --name=grafana grafana/grafana
+   docker-compose up -d
    ```
 3. Connect Grafana to the PostgreSQL data source:
 - Open http://localhost:3000 in a browser.
