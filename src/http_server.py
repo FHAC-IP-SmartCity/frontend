@@ -68,9 +68,10 @@ def insert_into_database(record_id, value):
     try:
         # Establish a connection to the PostgreSQL database
         connection = psycopg2.connect(**DB_CONFIG)
+        #Über den Cursor können SQL-Operationen
         cursor = connection.cursor()
 
-        # Insert data into the table
+        # Insert data into the table; %s ist ein Platzhalter, um SQL-Injection zu vermeiden.
         cursor.execute("INSERT INTO test (id, value) VALUES (%s, %s)", (record_id, value))
         
         # Commit the transaction
