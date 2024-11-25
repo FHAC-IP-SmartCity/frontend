@@ -1,4 +1,6 @@
-from flask import Flask, request, jsonify
+
+from flask import Flask, jsonify
+from flask import request,render_template
 import psycopg2
 
 # Initialize Flask app
@@ -49,6 +51,16 @@ def receive_data():
         # Log unexpected errors and respond with a 500 status
         print("Error processing request:", str(e))
         return jsonify({"error": str(e)}), 500
+
+# for JSON structure in webpage
+@app.route('/data', methods=['GET'])
+def get_data():
+    return jsonify(data_buffer), 200
+
+# for HTML structure in webpage
+# @app.route('/data', methods=['GET'])
+# def get_data():
+#     return render_template('data.html', data=data_buffer)
 
 
 def insert_into_database(record_id, value):
