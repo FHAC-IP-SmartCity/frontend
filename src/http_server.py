@@ -1,9 +1,19 @@
+
 from flask import Flask, jsonify
 from flask import request,render_template
+import psycopg2
 
 # Initialize Flask app
 app = Flask(__name__)
 
+# Database configuration
+DB_CONFIG = {
+    "dbname": "smartcitydb",
+    "user": "ip",
+    "password": "smartcity",
+    "host": "localhost",  # Use "postgres" if running inside the same Docker network
+    "port": 3021  # Port mapping from Docker Compose
+}
 # Create an in-memory buffer to temporarily store data
 data_buffer = []
 
@@ -27,6 +37,10 @@ def receive_data():
             data_buffer.append(data)
 
             print("Received valid data:", data)
+
+            # Insert data into the database
+            insert_into_database(data['id'], data['value'])
+
             return jsonify({"status": "success"}), 200
         else:
             # 400 means invalid data format
@@ -48,6 +62,30 @@ def get_data():
 # def get_data():
 #     return render_template('data.html', data=data_buffer)
 
+
+def insert_into_database(record_id, value):
+    """Insert data into the PostgreSQL database."""
+    try:
+        # Establish a connection to the PostgreSQL database
+        connection = psycopg2.connect(**DB_CONFIG)
+        cursor = connection.cursor()
+
+        # Insert data into the table
+        cursor.execute("INSERT INTO test (id, value) VALUES (%s, %s)", (record_id, value))
+        
+        # Commit the transaction
+        connection.commit()
+
+        print(f"Data inserted: id={record_id}, value={value}")
+
+    except Exception as e:
+        print("Database error:", str(e))
+    finally:
+        # Close the database connection
+        if 'cursor' in locals():
+            cursor.close()
+        if 'connection' in locals():
+            connection.close()
 
 # Run the server on port 3000
 if __name__ == '__main__':
