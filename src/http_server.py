@@ -71,7 +71,7 @@ def insert_into_database(record_id, value):
         cursor = connection.cursor()
 
         # Insert data into the table
-        cursor.execute("INSERT INTO test (id, value) VALUES (%s, %s)", (record_id, value))
+        cursor.execute("INSERT INTO smartcity (id, value) VALUES (%s, %s)", (record_id, value))
         
         # Commit the transaction
         connection.commit()
