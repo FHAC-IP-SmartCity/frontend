@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:15
+    container_name: Smart-City
+    environment:
+      POSTGRES_USER: ip
+      POSTGRES_PASSWORD: smartcity
+      POSTGRES_DB: smartcitydb
+    ports:
+      - "3021:5432"
+    networks:
+      - my_network
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      - postgres
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
