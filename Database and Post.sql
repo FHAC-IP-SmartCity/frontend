@@ -1,7 +1,19 @@
-
+--database configuration using docker 
 in cmd:
-C:\Users\zergh\Documents\GitHub\frontend>docker exec -it Smart-City psql -U ip -d smartcitydb
-danach: smartcitydb=# CREATE TABLE test (id INTEGER, value VARCHAR(200));
+.\frontend>docker exec -it Smart-City psql -U ip -d smartcitydb
 proto send -d http://127.0.0.1:3000/data -i 5 -v "Hello"
-psql (15.8 (Debian 15.8-1.pgdg120+1))
-Type "help" for help.
+
+
+--SQL commands 01.12.2024 --to be updated when new command is required 
+smartcitydb=# CREATE TABLE smartcity (id INTEGER, value VARCHAR(200));
+ALTER TABLE smartcity
+ADD COLUMN time TIMESTAMP;
+
+
+
+--Postgres db in grafana configuration 
+host:  postgres:5432
+user:  ip
+password: smartcity
+database: smartcitydb
+tsl mode: disable
