@@ -74,7 +74,6 @@ def insert_into_database(record_id, value):
         # Insert data into the table; %s ist ein Platzhalter, um SQL-Injection zu vermeiden.
         cursor.execute("INSERT INTO smartcity (id, value) VALUES (%s, %s)", (record_id, value))
         
-        # Commit the transaction
         connection.commit()
 
         print(f"Data inserted: id={record_id}, value={value}")
