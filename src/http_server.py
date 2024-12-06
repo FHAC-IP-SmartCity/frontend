@@ -70,7 +70,7 @@ def insert_into_database(record_id, value):
 
         # Determine the target table based on the id
         table_name = None
-        if record_id == 106:
+        if   record_id == 106:
             table_name = "noise_sensor"
         elif record_id == 110:
             table_name = "temperatur_sensor"
@@ -80,6 +80,26 @@ def insert_into_database(record_id, value):
             table_name = "feuchtigkeit_sensor"
         elif record_id == 113:
             table_name = "luftdruck_sensor"
+        elif record_id == 120:
+            table_name= "rfid_sensor"
+        elif record_id == 121:
+            table_name= "rfid_sensor"
+        elif record_id == 122:
+            table_name= "rfid_sensor"
+        elif record_id == 130:
+            table_name = "light_sensor"
+        elif record_id == 131:
+            table_name = "light_sensor"
+        elif record_id == 132:
+            table_name = "light_sensor"
+        elif record_id == 133:
+            table_name = "light_sensor"
+        elif record_id == 140:
+            table_name = "motion_sensor"
+        elif record_id == 141:
+            table_name = "motion_sensor"
+        elif record_id == 150:
+            table_name = "light_sensor"
         else:
             print(f"Unhandled ID: {record_id}")
             return  # Optionally log or handle unrecognized IDs
