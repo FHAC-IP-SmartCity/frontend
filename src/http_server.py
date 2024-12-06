@@ -28,12 +28,10 @@ def receive_data():
         data = request.json  # Use request.json to parse JSON payloads
 
         # Validate the JSON structure and data types
-        if (
-            'id' in data and 'value' in data and
-            isinstance(data['id'], int) and
-            isinstance(data['value'], str)
-        ):
-            # Store the valid data in the buffer
+        if 'id' in data and 'value' in data:
+            #isinstance(data['id'], int) and
+            #isinstance(data['value'], str)
+                # Store the valid data in the buffer
             data_buffer.append(data)
 
             print("Received valid data:", data)
@@ -64,19 +62,53 @@ def get_data():
 
 
 def insert_into_database(record_id, value):
-    """Insert data into the PostgreSQL database."""
+    """Insert data into the PostgreSQL database based on the id."""
     try:
         # Establish a connection to the PostgreSQL database
         connection = psycopg2.connect(**DB_CONFIG)
-        #Über den Cursor können SQL-Operationen
         cursor = connection.cursor()
 
-        # Insert data into the table; %s ist ein Platzhalter, um SQL-Injection zu vermeiden.
-        cursor.execute("INSERT INTO smartcity (id, value) VALUES (%s, %s)", (record_id, value))
-        
-        connection.commit()
+        # Determine the target table based on the id
+        table_name = None
+        if   record_id == 106:
+            table_name = "noise_sensor"
+        elif record_id == 110:
+            table_name = "temperatur_sensor"
+        elif record_id == 111:
+            table_name = "gas_sensor"
+        elif record_id == 112:
+            table_name = "feuchtigkeit_sensor"
+        elif record_id == 113:
+            table_name = "luftdruck_sensor"
+        elif record_id == 120:
+            table_name= "rfid_sensor"
+        elif record_id == 121:
+            table_name= "rfid_sensor"
+        elif record_id == 122:
+            table_name= "rfid_sensor"
+        elif record_id == 130:
+            table_name = "light_sensor"
+        elif record_id == 131:
+            table_name = "light_sensor"
+        elif record_id == 132:
+            table_name = "light_sensor"
+        elif record_id == 133:
+            table_name = "light_sensor"
+        elif record_id == 140:
+            table_name = "motion_sensor"
+        elif record_id == 141:
+            table_name = "motion_sensor"
+        elif record_id == 150:
+            table_name = "light_sensor"
+        else:
+            print(f"Unhandled ID: {record_id}")
+            return  # Optionally log or handle unrecognized IDs
 
-        print(f"Data inserted: id={record_id}, value={value}")
+        # Insert into the determined table
+        if table_name:
+            cursor.execute(f"INSERT INTO {table_name} (id, value) VALUES (%s, %s)", (record_id, value))
+            connection.commit()
+            print(f"Data inserted into {table_name}: id={record_id}, value={value}")
 
     except Exception as e:
         print("Database error:", str(e))
@@ -86,6 +118,7 @@ def insert_into_database(record_id, value):
             cursor.close()
         if 'connection' in locals():
             connection.close()
+
 
 # Run the server on port 3000
 if __name__ == '__main__':
