@@ -29,3 +29,4 @@ CREATE TABLE feuchtigkeit_sensor(id INTEGER, value FLOAT);
 CREATE TABLE luftdruck_sensor(id INTEGER, value FLOAT);
 CREATE TABLE motion_sensor(id INTEGER, value FLOAT);
 CREATE TABLE RFID_sensor(id INTEGER, value VARCHAR(500));
+CREATE TABLE park_sensor(id INTEGER, value INTEGER);
