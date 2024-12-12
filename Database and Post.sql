@@ -29,3 +29,14 @@ CREATE TABLE feuchtigkeit_sensor(id INTEGER, value FLOAT);
 CREATE TABLE luftdruck_sensor(id INTEGER, value FLOAT);
 CREATE TABLE motion_sensor(id INTEGER, value FLOAT);
 CREATE TABLE RFID_sensor(id INTEGER, value VARCHAR(500));
+CREATE TABLE park_sensor(id INTEGER, value INTEGER);
+
+ALTER TABLE light_sensor ADD COLUMN timestamp TIMESTAMP;
+ALTER TABLE noise_sensor ADD COLUMN timestamp TIMESTAMP;
+ALTER TABLE temperatur_sensor ADD COLUMN timestamp TIMESTAMP;
+ALTER TABLE gas_sensor ADD COLUMN timestamp TIMESTAMP;
+ALTER TABLE feuchtigkeit_sensor ADD COLUMN timestamp TIMESTAMP;
+ALTER TABLE luftdruck_sensor ADD COLUMN timestamp TIMESTAMP;
+ALTER TABLE motion_sensor ADD COLUMN timestamp TIMESTAMP;
+ALTER TABLE RFID_sensor ADD COLUMN timestamp TIMESTAMP;
+ALTER TABLE park_sensor ADD COLUMN timestamp TIMESTAMP;

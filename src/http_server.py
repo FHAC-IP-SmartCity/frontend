@@ -87,13 +87,13 @@ def insert_into_database(record_id, value):
         elif record_id == 122:
             table_name= "rfid_sensor"
         elif record_id == 130:
-            table_name = "light_sensor"
+            table_name = "park_sensor"
         elif record_id == 131:
-            table_name = "light_sensor"
+            table_name = "park_sensor"
         elif record_id == 132:
-            table_name = "light_sensor"
+            table_name = "park_sensor"
         elif record_id == 133:
-            table_name = "light_sensor"
+            table_name = "park_sensor"
         elif record_id == 140:
             table_name = "motion_sensor"
         elif record_id == 141:

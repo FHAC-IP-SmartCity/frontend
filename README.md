@@ -78,10 +78,14 @@ Analyze the stored data and provide meaningful visualizations through a Grafana 
    docker-compose up -d
    ```
 3. Connect Grafana to the PostgreSQL data source:
-- Open http://localhost:3000 in a browser.
+- Open http://localhost:3031 in a browser.
 - Add PostgreSQL as a data source (Configuration > Data Sources).
-- Provide the connection details (host, database name, username, password).
+- Provide the connection details (HostURL: postgres:5432, Database name: smartcitydb, Username: ip, password: smartcity).
 4. Create dashboards:
+- Click "Create your new dashboard" 
+- Click "Import a dashboard"
+- Upload the JSON file: Smart-City-1734011670150.json
+- Select Datasource (the one you just configured in step 3)
 ### Outcome:
 Real-time and historical data are visualized in Grafana dashboards for easy analysis.
 
