@@ -345,7 +345,7 @@
           ],
           "show": false
         },
-        "frameIndex": 0,
+        "frameIndex": 1,
         "showHeader": true
       },
       "pluginVersion": "11.3.0+security-01",
@@ -1763,49 +1763,48 @@
       "type": "stat"
     }
   ],
-  "refresh": "5s",
   "schemaVersion": 40,
   "tags": [],
   "templating": {
     "list": [
       {
         "current": {},
-        "definition": "select id from RFID_sensor",
+        "definition": "SELECT\n  CASE \n    WHEN id = 120 THEN 'Westbahnhof'\n    WHEN id = 121 THEN 'HBH'\n    WHEN id = 122 THEN 'Kreuzung'\n  END AS __text,\n  id AS __value\nFROM RFID_sensor",
         "description": "120: Westbahnhof,\n121: HBH,\n122: Kreuzung",
         "includeAll": true,
         "label": "RFID ",
         "multi": true,
         "name": "id",
         "options": [],
-        "query": "select id from RFID_sensor",
+        "query": "SELECT\n  CASE \n    WHEN id = 120 THEN 'Westbahnhof'\n    WHEN id = 121 THEN 'HBH'\n    WHEN id = 122 THEN 'Kreuzung'\n  END AS __text,\n  id AS __value\nFROM RFID_sensor",
         "refresh": 1,
         "regex": "",
         "type": "query"
       },
       {
         "current": {},
-        "definition": "select id from motion_sensor",
+        "definition": "SELECT\n  CASE \n    WHEN id = 140 THEN 'West'\n    WHEN id = 141 THEN 'HBH'\n  END AS __text,\n  id AS __value\nFROM motion_sensor",
         "description": "140: West, \n141: HBH",
         "includeAll": true,
         "label": "Bewegungsensor",
         "multi": true,
         "name": "parkplatz",
         "options": [],
-        "query": "select id from motion_sensor",
+        "query": "SELECT\n  CASE \n    WHEN id = 140 THEN 'West'\n    WHEN id = 141 THEN 'HBH'\n  END AS __text,\n  id AS __value\nFROM motion_sensor",
         "refresh": 1,
         "regex": "",
         "type": "query"
       },
       {
         "current": {},
-        "definition": "select id from light_sensor",
-        "description": "130: HBH, \n131: Bushaltstelle\n132: Abstellplatz\n133: Westbahnhof\n150: Dom",
+        "definition": "SELECT\n  CASE \n    WHEN id = 130 THEN 'HBH'\n    WHEN id = 131 THEN 'Bushaltstelle'\n    WHEN id = 132 THEN 'Abstellplatz'\n    WHEN id = 133 THEN 'Westbahnhof'\n    WHEN id = 150 THEN 'Dom'\n  END AS __text,\n  id AS __value\nFROM light_sensor",
+        "description": "130: HBH, \n131: Bushaltstelle,\n132: Abstellplatz,\n133: Westbahnhof,\n150: Dom",
         "includeAll": true,
         "label": "Lichtschranke",
         "multi": true,
         "name": "lightsensor_id",
         "options": [],
-        "query": "select id from light_sensor",
+        "query": "SELECT\n  CASE \n    WHEN id = 130 THEN 'HBH'\n    WHEN id = 131 THEN 'Bushaltstelle'\n    WHEN id = 132 THEN 'Abstellplatz'\n    WHEN id = 133 THEN 'Westbahnhof'\n    WHEN id = 150 THEN 'Dom'\n  END AS __text,\n  id AS __value\nFROM light_sensor",
         "refresh": 1,
         "regex": "",
         "type": "query"
@@ -1813,13 +1812,13 @@
     ]
   },
   "time": {
-    "from": "2024-12-08T10:52:53.436Z",
-    "to": "2024-12-08T10:55:44.908Z"
+    "from": "2024-12-08T10:59:08.629Z",
+    "to": "2024-12-08T10:59:47.129Z"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Smart-City",
   "uid": "ee5fndh7lds00a",
-  "version": 43,
+  "version": 45,
   "weekStart": ""
 }
