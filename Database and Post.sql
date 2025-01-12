@@ -32,5 +32,4 @@ CREATE TABLE motion_sensor(id INTEGER, value FLOAT , timestamp TIMESTAMP);
 CREATE TABLE RFID_sensor(id INTEGER, value INTEGER , timestamp TIMESTAMP);
 CREATE TABLE park_sensor(id INTEGER, value boolean , timestamp TIMESTAMP);
 CREATE TABLE park_zahler_sensor(id INTEGER, value INTEGER , timestamp TIMESTAMP);
-
 CREATE TABLE RFID_bus_sensor(id INTEGER, value boolean , timestamp TIMESTAMP);
