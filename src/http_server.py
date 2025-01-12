@@ -77,11 +77,11 @@ def insert_into_database(record_id, value):
         elif   record_id == 2220:
             table_name = "light_sensor"
         elif   record_id == 2230:
-            table_name = "light_sensor"
+            table_name = "light_park_sensor"
         elif   record_id == 2240:
-            table_name = "light_sensor"
+            table_name = "light_park_sensor"
         elif   record_id == 2250:
-            table_name = "light_sensor"
+            table_name = "light_park_sensor"
         elif record_id == 2310:
             table_name= "park_sensor"
         elif record_id == 3110:
@@ -101,7 +101,7 @@ def insert_into_database(record_id, value):
         elif record_id == 4513:
             table_name = "feuchtigkeit_sensor"
         elif record_id == 4514:
-            table_name = "luft_sensor"
+            table_name = "luftdruck_sensor"
         elif record_id == 4610:
             table_name = "noise_sensor"
     
