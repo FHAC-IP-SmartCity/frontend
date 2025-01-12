@@ -22,6 +22,7 @@ tsl mode: disable
 
 DATENBANK ertellen:
 CREATE TABLE light_sensor(id INTEGER , value INTEGER );
+CREATE TABLE light_intens_sensor(id INTEGER , value INTEGER );
 CREATE TABLE noise_sensor(id INTEGER, value INTEGER);
 CREATE TABLE temperatur_sensor(id INTEGER, value FLOAT);
 CREATE TABLE gas_sensor(id INTEGER, value FLOAT);

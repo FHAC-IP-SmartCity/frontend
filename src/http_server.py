@@ -70,36 +70,41 @@ def insert_into_database(record_id, value):
 
         # Determine the target table based on the id
         table_name = None
-        if   record_id == 106:
-            table_name = "noise_sensor"
-        elif record_id == 110:
-            table_name = "temperatur_sensor"
-        elif record_id == 111:
-            table_name = "gas_sensor"
-        elif record_id == 112:
-            table_name = "feuchtigkeit_sensor"
-        elif record_id == 113:
-            table_name = "luftdruck_sensor"
-        elif record_id == 120:
-            table_name= "rfid_sensor"
-        elif record_id == 121:
-            table_name= "rfid_sensor"
-        elif record_id == 122:
-            table_name= "rfid_sensor"
-        elif record_id == 130:
-            table_name = "park_sensor"
-        elif record_id == 131:
-            table_name = "park_sensor"
-        elif record_id == 132:
-            table_name = "park_sensor"
-        elif record_id == 133:
-            table_name = "park_sensor"
-        elif record_id == 140:
-            table_name = "motion_sensor"
-        elif record_id == 141:
-            table_name = "motion_sensor"
-        elif record_id == 150:
+        if   record_id == 2210:
             table_name = "light_sensor"
+        elif record_id == 1100:
+            table_name= "RFID_sensor"
+        elif   record_id == 2220:
+            table_name = "light_sensor"
+        elif   record_id == 2230:
+            table_name = "light_sensor"
+        elif   record_id == 2240:
+            table_name = "light_sensor"
+        elif   record_id == 2250:
+            table_name = "light_sensor"
+        elif record_id == 2310:
+            table_name= "park_sensor"
+        elif record_id == 3110:
+            table_name = "RFID_sensor"
+        elif record_id == 3210:
+            table_name = "light_sensor"
+        elif record_id == 3220:
+            table_name = "light_sensor"
+        elif record_id == 3310:
+            table_name = "park_sensor"
+        elif record_id == 4410:
+            table_name= "light_intens_sensor"
+        elif record_id == 4511:
+            table_name= "temperatur_sensor"
+        elif record_id == 4512:
+            table_name = "gas_sensor"
+        elif record_id == 4513:
+            table_name = "feuchtigkeit_sensor"
+        elif record_id == 4514:
+            table_name = "luft_sensor"
+        elif record_id == 4610:
+            table_name = "noise_sensor"
+    
         else:
             print(f"Unhandled ID: {record_id}")
             return  # Optionally log or handle unrecognized IDs
