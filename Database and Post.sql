@@ -21,23 +21,16 @@ tsl mode: disable
 
 
 DATENBANK ertellen:
-CREATE TABLE light_sensor(id INTEGER , value INTEGER );
-CREATE TABLE light_intens_sensor(id INTEGER , value INTEGER );
-CREATE TABLE noise_sensor(id INTEGER, value INTEGER);
-CREATE TABLE temperatur_sensor(id INTEGER, value FLOAT);
-CREATE TABLE gas_sensor(id INTEGER, value FLOAT);
-CREATE TABLE feuchtigkeit_sensor(id INTEGER, value FLOAT);
-CREATE TABLE luftdruck_sensor(id INTEGER, value FLOAT);
-CREATE TABLE motion_sensor(id INTEGER, value FLOAT);
-CREATE TABLE RFID_sensor(id INTEGER, value VARCHAR(500));
-CREATE TABLE park_sensor(id INTEGER, value INTEGER);
+CREATE TABLE light_sensor(id INTEGER , value boolean , timestamp TIMESTAMP );
+CREATE TABLE light_intens_sensor(id INTEGER , value boolean , timestamp TIMESTAMP);
+CREATE TABLE noise_sensor(id INTEGER, value FLOAT , timestamp TIMESTAMP);
+CREATE TABLE temperatur_sensor(id INTEGER, value FLOAT , timestamp TIMESTAMP);
+CREATE TABLE gas_sensor(id INTEGER, value FLOAT , timestamp TIMESTAMP);
+CREATE TABLE feuchtigkeit_sensor(id INTEGER, value FLOAT , timestamp TIMESTAMP);
+CREATE TABLE luftdruck_sensor(id INTEGER, value FLOAT , timestamp TIMESTAMP);
+CREATE TABLE motion_sensor(id INTEGER, value FLOAT , timestamp TIMESTAMP);
+CREATE TABLE RFID_sensor(id INTEGER, value INTEGER , timestamp TIMESTAMP);
+CREATE TABLE park_sensor(id INTEGER, value boolean , timestamp TIMESTAMP);
+CREATE TABLE park_zahler_sensor(id INTEGER, value INTEGER , timestamp TIMESTAMP);
 
-ALTER TABLE light_sensor ADD COLUMN timestamp TIMESTAMP;
-ALTER TABLE noise_sensor ADD COLUMN timestamp TIMESTAMP;
-ALTER TABLE temperatur_sensor ADD COLUMN timestamp TIMESTAMP;
-ALTER TABLE gas_sensor ADD COLUMN timestamp TIMESTAMP;
-ALTER TABLE feuchtigkeit_sensor ADD COLUMN timestamp TIMESTAMP;
-ALTER TABLE luftdruck_sensor ADD COLUMN timestamp TIMESTAMP;
-ALTER TABLE motion_sensor ADD COLUMN timestamp TIMESTAMP;
-ALTER TABLE RFID_sensor ADD COLUMN timestamp TIMESTAMP;
-ALTER TABLE park_sensor ADD COLUMN timestamp TIMESTAMP;
+CREATE TABLE RFID_bus_sensor(id INTEGER, value boolean , timestamp TIMESTAMP);
