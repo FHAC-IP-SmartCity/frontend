@@ -21,15 +21,15 @@ tsl mode: disable
 
 
 DATENBANK ertellen:
-CREATE TABLE light_sensor(id INTEGER , value boolean , timestamp TIMESTAMP );
-CREATE TABLE light_intens_sensor(id INTEGER , value boolean , timestamp TIMESTAMP);
-CREATE TABLE noise_sensor(id INTEGER, value FLOAT , timestamp TIMESTAMP);
-CREATE TABLE temperatur_sensor(id INTEGER, value FLOAT , timestamp TIMESTAMP);
-CREATE TABLE gas_sensor(id INTEGER, value FLOAT , timestamp TIMESTAMP);
-CREATE TABLE feuchtigkeit_sensor(id INTEGER, value FLOAT , timestamp TIMESTAMP);
-CREATE TABLE luftdruck_sensor(id INTEGER, value FLOAT , timestamp TIMESTAMP);
-CREATE TABLE motion_sensor(id INTEGER, value FLOAT , timestamp TIMESTAMP);
-CREATE TABLE RFID_sensor(id INTEGER, value INTEGER , timestamp TIMESTAMP);
-CREATE TABLE park_sensor(id INTEGER, value boolean , timestamp TIMESTAMP);
-CREATE TABLE park_zahler_sensor(id INTEGER, value INTEGER , timestamp TIMESTAMP);
-CREATE TABLE RFID_bus_sensor(id INTEGER, value boolean , timestamp TIMESTAMP);
+CREATE TABLE light_sensor(id INTEGER , value boolean , timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP );
+CREATE TABLE light_intens_sensor(id INTEGER , value boolean , timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE noise_sensor(id INTEGER, value FLOAT , timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE temperatur_sensor(id INTEGER, value FLOAT , timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE gas_sensor(id INTEGER, value FLOAT , timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE feuchtigkeit_sensor(id INTEGER, value FLOAT , timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE luftdruck_sensor(id INTEGER, value FLOAT , timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE motion_sensor(id INTEGER, value FLOAT , timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE RFID_sensor(id INTEGER, value INTEGER , timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE park_sensor(id INTEGER, value boolean , timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE park_zahler_sensor(id INTEGER, value INTEGER , timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE RFID_bus_sensor(id INTEGER, value boolean , timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
