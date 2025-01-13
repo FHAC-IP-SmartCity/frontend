@@ -1073,123 +1073,6 @@
         "type": "grafana-postgresql-datasource",
         "uid": "${DS_GRAFANA-POSTGRESQL-DATASOURCE}"
       },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "auto",
-            "cellOptions": {
-              "type": "auto"
-            },
-            "inspect": false
-          },
-          "mappings": [
-            {
-              "options": {
-                "false": {
-                  "index": 1,
-                  "text": "Licht aus"
-                },
-                "true": {
-                  "index": 0,
-                  "text": "Licht an"
-                }
-              },
-              "type": "value"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 9,
-        "x": 15,
-        "y": 6
-      },
-      "id": 12,
-      "options": {
-        "cellHeight": "sm",
-        "footer": {
-          "countRows": false,
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
-        "showHeader": true
-      },
-      "pluginVersion": "11.3.0+security-01",
-      "targets": [
-        {
-          "editorMode": "code",
-          "format": "table",
-          "rawQuery": true,
-          "rawSql": "SELECT value AS \"Zustand\", \"timestamp\" FROM park_sensor WHERE value IN (${licht_an_aus:csv}) LIMIT 50 ",
-          "refId": "A",
-          "sql": {
-            "columns": [
-              {
-                "alias": "\"Zustand\"",
-                "parameters": [
-                  {
-                    "name": "value",
-                    "type": "functionParameter"
-                  }
-                ],
-                "type": "function"
-              },
-              {
-                "parameters": [
-                  {
-                    "name": "\"timestamp\"",
-                    "type": "functionParameter"
-                  }
-                ],
-                "type": "function"
-              }
-            ],
-            "groupBy": [
-              {
-                "property": {
-                  "type": "string"
-                },
-                "type": "groupBy"
-              }
-            ],
-            "limit": 50
-          },
-          "table": "park_sensor",
-          "datasource": {
-            "type": "grafana-postgresql-datasource",
-            "uid": "${DS_GRAFANA-POSTGRESQL-DATASOURCE}"
-          }
-        }
-      ],
-      "title": "Parkplatzlicht",
-      "type": "table"
-    },
-    {
-      "datasource": {
-        "type": "grafana-postgresql-datasource",
-        "uid": "${DS_GRAFANA-POSTGRESQL-DATASOURCE}"
-      },
       "description": "Lichtschranke",
       "fieldConfig": {
         "defaults": {
@@ -1208,11 +1091,11 @@
               "options": {
                 "2210": {
                   "index": 0,
-                  "text": "Erkennung von Bahn"
+                  "text": "Hauptbahnhof"
                 },
                 "2220": {
                   "index": 1,
-                  "text": "Erkennung von Bahn"
+                  "text": "Hauptbahnhof"
                 },
                 "2230": {
                   "index": 2,
@@ -1228,11 +1111,11 @@
                 },
                 "3210": {
                   "index": 5,
-                  "text": "Erkennung von Bahn"
+                  "text": "Westbahnhof"
                 },
                 "3220": {
                   "index": 6,
-                  "text": "Erkennung von Bahn"
+                  "text": "Westbahnhof"
                 },
                 "true": {
                   "index": 7,
@@ -1259,10 +1142,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 6,
         "w": 9,
-        "x": 0,
-        "y": 11
+        "x": 15,
+        "y": 6
       },
       "id": 10,
       "options": {
@@ -1280,12 +1163,23 @@
       "pluginVersion": "11.3.0+security-01",
       "targets": [
         {
-          "editorMode": "builder",
+          "editorMode": "code",
           "format": "table",
-          "rawSql": "SELECT value AS \"Zustand\", \"timestamp\" FROM light_sensor LIMIT 50 ",
+          "rawQuery": true,
+          "rawSql": "SELECT id AS \"Ort\", value AS \"Zustand\", \"timestamp\" FROM light_sensor WHERE id IN (${hbf_westbf:csv}) LIMIT 50 ",
           "refId": "A",
           "sql": {
             "columns": [
+              {
+                "alias": "\"Ort\"",
+                "parameters": [
+                  {
+                    "name": "id",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
               {
                 "alias": "\"Zustand\"",
                 "parameters": [
@@ -1370,9 +1264,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 6,
         "w": 7,
-        "x": 9,
+        "x": 0,
         "y": 11
       },
       "id": 11,
@@ -1507,9 +1401,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 6,
         "w": 8,
-        "x": 16,
+        "x": 7,
         "y": 11
       },
       "id": 8,
@@ -1528,9 +1422,10 @@
       "pluginVersion": "11.3.0+security-01",
       "targets": [
         {
-          "editorMode": "builder",
+          "editorMode": "code",
           "format": "table",
-          "rawSql": "SELECT value AS \"Zustand\", \"timestamp\" FROM light_intens_sensor LIMIT 50 ",
+          "rawQuery": true,
+          "rawSql": "SELECT value AS \"Zustand\", \"timestamp\" FROM light_intens_sensor WHERE value IN (${licht_an_aus:csv}) LIMIT 50 ",
           "refId": "A",
           "sql": {
             "columns": [
@@ -1619,10 +1514,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 5,
         "w": 9,
-        "x": 0,
-        "y": 15
+        "x": 15,
+        "y": 12
       },
       "id": 9,
       "options": {
@@ -1695,13 +1590,27 @@
     "list": [
       {
         "current": {},
-        "definition": "SELECT\n  CASE \n    WHEN value= true THEN 'Licht an'\n    WHEN value = false THEN 'Licht aus'\n  END AS __text,\n  value AS __value\nFROM park_sensor",
+        "definition": "SELECT\n  CASE \n    WHEN value= true THEN 'Licht an'\n    WHEN value = false THEN 'Licht aus'\n  END AS __text,\n  value AS __value\nFROM light_intens_sensor",
         "includeAll": true,
-        "label": "Zustand von Prakplatzlicht",
+        "label": "Lichtintensität",
         "multi": true,
         "name": "licht_an_aus",
         "options": [],
-        "query": "SELECT\n  CASE \n    WHEN value= true THEN 'Licht an'\n    WHEN value = false THEN 'Licht aus'\n  END AS __text,\n  value AS __value\nFROM park_sensor",
+        "query": "SELECT\n  CASE \n    WHEN value= true THEN 'Licht an'\n    WHEN value = false THEN 'Licht aus'\n  END AS __text,\n  value AS __value\nFROM light_intens_sensor",
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "current": {},
+        "definition": "SELECT\n  CASE \n    WHEN id = 3210 THEN 'Westbahnhof'\n    WHEN id = 3220 THEN 'Westbahnhof'\n    WHEN id = 2210 THEN 'Hauptbahnhof'\n    WHEN id = 2220 THEN 'Hauptbahnhof'\n  END AS __text,\n  id AS __value\nFROM light_sensor",
+        "description": "",
+        "includeAll": true,
+        "label": "Lichtschranke zur Erkennung der Bahn",
+        "multi": true,
+        "name": "hbf_westbf",
+        "options": [],
+        "query": "SELECT\n  CASE \n    WHEN id = 3210 THEN 'Westbahnhof'\n    WHEN id = 3220 THEN 'Westbahnhof'\n    WHEN id = 2210 THEN 'Hauptbahnhof'\n    WHEN id = 2220 THEN 'Hauptbahnhof'\n  END AS __text,\n  id AS __value\nFROM light_sensor",
         "refresh": 1,
         "regex": "",
         "type": "query"
@@ -1716,6 +1625,6 @@
   "timezone": "browser",
   "title": "Test",
   "uid": "ae6p9lc3ra22oe",
-  "version": 24,
+  "version": 29,
   "weekStart": ""
 }
