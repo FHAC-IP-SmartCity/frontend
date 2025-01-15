@@ -20,7 +20,7 @@ tsl mode: disable
 
 
 
-DATENBANK ertellen:
+--DATENBANK ertellen:
 CREATE TABLE light_sensor(id INTEGER , value INT , timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP );
 CREATE TABLE light_park_sensor(id INTEGER , value INT , timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
 CREATE TABLE light_intens_sensor(id INTEGER , value INT , timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
