@@ -21,9 +21,14 @@ tsl mode: disable
 
 
 --DATENBANK ertellen:
+<<<<<<< Updated upstream
 CREATE TABLE light_sensor(id INTEGER , value INT , timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP );
 CREATE TABLE light_park_sensor(id INTEGER , value INT , timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
 CREATE TABLE light_intens_sensor(id INTEGER , value INT , timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+=======
+CREATE TABLE light_sensor(id INTEGER , value boolean , timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP );
+CREATE TABLE light_intens_sensor(id INTEGER , value boolean , timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+>>>>>>> Stashed changes
 CREATE TABLE noise_sensor(id INTEGER, value FLOAT , timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
 CREATE TABLE temperatur_sensor(id INTEGER, value FLOAT , timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
 CREATE TABLE gas_sensor(id INTEGER, value FLOAT , timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
