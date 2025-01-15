@@ -23,7 +23,11 @@ DB_CONFIG = {
 
 # Create an in-memory deque buffer to temporarily store data
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 data_buffer = deque(maxlen=10000)  # Automatically drop oldest records if full
+=======
+data_buffer = deque(maxlen=1000)  # Automatically drop oldest records if full
+>>>>>>> Stashed changes
 =======
 data_buffer = deque(maxlen=1000)  # Automatically drop oldest records if full
 >>>>>>> Stashed changes
@@ -38,7 +42,11 @@ TABLE_NAME_MAP = {
     2240: "light_park_sensor",
     2250: "light_park_sensor",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     #2310: "park_sensor",
+=======
+    2310: "park_sensor",
+>>>>>>> Stashed changes
 =======
     2310: "park_sensor",
 >>>>>>> Stashed changes
@@ -52,7 +60,11 @@ TABLE_NAME_MAP = {
     4513: "feuchtigkeit_sensor",
     4514: "luftdruck_sensor",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     #4610: "noise_sensor"
+=======
+    4610: "noise_sensor"
+>>>>>>> Stashed changes
 =======
     4610: "noise_sensor"
 >>>>>>> Stashed changes
