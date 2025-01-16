@@ -1,23 +1,46 @@
-version: '3.8'
 services:
   postgres:
     image: postgres:15
     container_name: Smart-City
     environment:
-      POSTGRES_USER: ip
-      POSTGRES_PASSWORD: smartcity
-      POSTGRES_DB: smartcitydb
+      POSTGRES_USER: kunde
+      POSTGRES_PASSWORD: kunde
+      POSTGRES_DB: prodDB
     ports:
-      - "3021:5432"
+      - "5432:5432"
     networks:
-      - my_network
+      - app_network
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # Mount the init.sql script
+
+
+  flask-server:
+    build:
+      context: ./src
+      dockerfile: Dockerfile
+    container_name: flask-server
+    environment:
+      - DB_NAME=prodDB
+      - DB_USER=kunde
+      - DB_PASSWORD=kunde
+      - DB_HOST=postgres
+      - DB_PORT=5432
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    networks:
+      - app_network
+    volumes:
+    - ./src:/app  # Map the local src/ directory to /app in the container
+
+
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
     ports:
-      - "3031:3000"
+      - "3001:3000"
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
@@ -26,11 +49,12 @@ services:
     depends_on:
       - postgres
     networks:
-      - my_network
+      - app_network
 
 networks:
-  my_network:
+  app_network:
     driver: bridge
+
 volumes:
-  grafana_data:
   postgres_data:
+  grafana_data:
