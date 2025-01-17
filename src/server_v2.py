@@ -14,11 +14,11 @@ logging.basicConfig(level=logging.INFO)
 
 # Database configuration
 DB_CONFIG = {
-    "dbname": "smartcitydb",
-    "user": "ip",
-    "password": "smartcity",
-    "host": "localhost",  # Use "postgres" if running inside the same Docker network
-    "port": 3021  # Port mapping from Docker Compose
+    "dbname": "prodDB",
+    "user": "kunde",
+    "password": "kunde",
+    "host": "postgres",  # Use "postgres" if running inside the same Docker network
+    "port": 5432 # Port mapping from Docker Compose
 }
 
 # Create an in-memory deque buffer to temporarily store data
