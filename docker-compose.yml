@@ -17,8 +17,8 @@ services:
 
   flask-server:
     build:
-      context: ./src
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: dockerfile
     container_name: flask-server
     environment:
       - DB_NAME=prodDB
@@ -26,16 +26,16 @@ services:
       - DB_PASSWORD=kunde
       - DB_HOST=postgres
       - DB_PORT=5432
+      - FLASK_ENV=production
     ports:
       - "3000:3000"
+    volumes:
+      - ./src:/app/src
+      - ./requirements.txt:/app/requirements.txt
     depends_on:
       - postgres
     networks:
       - app_network
-    volumes:
-    - ./src:/app  # Map the local src/ directory to /app in the container
-
-
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
