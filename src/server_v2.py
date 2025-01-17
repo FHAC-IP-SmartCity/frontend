@@ -60,6 +60,7 @@ worker_thread = threading.Thread(target=data_worker, daemon=True)
 worker_thread.start()
 
 # Define the endpoint to receive data
+@app.route('/', methods=['POST'])
 @app.route('/data', methods=['POST'])
 def receive_data():
     try:
@@ -88,6 +89,7 @@ def receive_data():
         return jsonify({"error": str(e)}), 500
 
 # Endpoint to retrieve buffered data
+@app.route('/', methods=['GET'])
 @app.route('/data', methods=['GET'])
 def get_data():
     return jsonify(list(data_buffer)), 200
