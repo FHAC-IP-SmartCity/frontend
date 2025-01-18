@@ -4,7 +4,7 @@ datasources:
   - name: PostgreSQL
     type: postgres
     access: proxy
-    url: localhost:5432  # PostgreSQL host and port (use service name in Docker)
+    url: postgres:5432  # PostgreSQL host and port (use service name in Docker)
     database: prodDB     # Database name
     user: kunde          # PostgreSQL user
     password: kunde      # PostgreSQL password
