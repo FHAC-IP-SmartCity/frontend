@@ -43,10 +43,10 @@ services:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
     volumes:
-      #- grafana_data:/var/lib/grafana                       # Persistent data storage
-      - ./provisioning/dashboards:/etc/grafana/provisioning/dashboards   # Mount dashboard JSONs
-      - ./provisioning/dashboards.yaml:/etc/grafana/provisioning/dashboards.yaml  # Dashboard provisioning config
-      - ./provisioning/datasources.yaml:/etc/grafana/provisioning/datasources.yaml  # Data source provisioning config
+      - grafana_data:/var/lib/grafana                       # Persistent data storage
+      - ./prov/dashboards:/etc/grafana/provisioning/dashboards   # Mount dashboard JSONs
+      - ./prov/dashboards.yaml:/etc/grafana/provisioning/dashboards.yaml  # Dashboard provisioning config
+      - ./prov/datasources/datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml  # Data source provisioning config
     depends_on:
       - postgres
     networks:
