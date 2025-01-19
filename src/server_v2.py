@@ -14,11 +14,11 @@ logging.basicConfig(level=logging.INFO)
 
 # Database configuration
 DB_CONFIG = {
-    "dbname": "smartcitydb",
-    "user": "ip",
-    "password": "smartcity",
-    "host": "localhost",  # Use "postgres" if running inside the same Docker network
-    "port": 3021  # Port mapping from Docker Compose
+    "dbname": "prodDB",
+    "user": "kunde",
+    "password": "kunde",
+    "host": "postgres",  # Use "postgres" if running inside the same Docker network
+    "port": 5432 # Port mapping from Docker Compose
 }
 
 # Create an in-memory deque buffer to temporarily store data
@@ -60,6 +60,7 @@ worker_thread = threading.Thread(target=data_worker, daemon=True)
 worker_thread.start()
 
 # Define the endpoint to receive data
+@app.route('/', methods=['POST'])
 @app.route('/data', methods=['POST'])
 def receive_data():
     try:
@@ -88,6 +89,7 @@ def receive_data():
         return jsonify({"error": str(e)}), 500
 
 # Endpoint to retrieve buffered data
+@app.route('/', methods=['GET'])
 @app.route('/data', methods=['GET'])
 def get_data():
     return jsonify(list(data_buffer)), 200

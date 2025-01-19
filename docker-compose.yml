@@ -1,36 +1,61 @@
-version: '3.8'
 services:
   postgres:
     image: postgres:15
-    container_name: Smart-City
+    container_name: smartDB
     environment:
-      POSTGRES_USER: ip
-      POSTGRES_PASSWORD: smartcity
-      POSTGRES_DB: smartcitydb
+      POSTGRES_USER: kunde
+      POSTGRES_PASSWORD: kunde
+      POSTGRES_DB: prodDB
     ports:
-      - "3021:5432"
+      - "5432:5432"
     networks:
-      - my_network
+      - app_network
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_data_a:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+  flask-server:
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: flask-server
+    environment:
+      - DB_NAME=prodDB
+      - DB_USER=kunde
+      - DB_PASSWORD=kunde
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - FLASK_ENV=production
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src:/app/src
+      - ./requirements.txt:/app/requirements.txt
+    depends_on:
+      - postgres
+    networks:
+      - app_network
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
     ports:
-      - "3031:3000"
+      - "3001:3000"
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
     volumes:
-      - grafana_data:/var/lib/grafana
+      - grafana_data:/var/lib/grafana                       # Persistent data storage
+      - ./prov/dashboards:/etc/grafana/provisioning/dashboards   # Mount dashboard JSONs
+      - ./prov/dashboards.yaml:/etc/grafana/provisioning/dashboards.yaml  # Dashboard provisioning config
+      - ./prov/datasources/datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml  # Data source provisioning config
     depends_on:
       - postgres
     networks:
-      - my_network
+      - app_network
 
 networks:
-  my_network:
+  app_network:
     driver: bridge
+
 volumes:
+  postgres_data_a:
   grafana_data:
-  postgres_data:
