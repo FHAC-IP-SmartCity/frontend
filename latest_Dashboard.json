@@ -421,7 +421,7 @@
           ],
           "show": false
         },
-        "frameIndex": 0,
+        "frameIndex": 2,
         "showHeader": true
       },
       "pluginVersion": "11.3.0+security-01",
@@ -921,13 +921,13 @@
           "mappings": [
             {
               "options": {
-                "false": {
-                  "index": 1,
-                  "text": "Licht aus"
-                },
-                "true": {
+                "0": {
                   "index": 0,
-                  "text": "Licht an"
+                  "text": "Licht aus (hell) "
+                },
+                "1": {
+                  "index": 1,
+                  "text": "Licht an (dunkel)"
                 }
               },
               "type": "value"
@@ -978,7 +978,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT value AS \"Zustand\", \"timestamp\" FROM light_intens_sensor ORDER BY timestamp DESC\r\nLIMIT 1000 ",
+          "rawSql": "SELECT value AS \"Zustand\", \"timestamp\" FROM light_intens_sensor WHERE value IN (${light:csv}) ORDER BY timestamp DESC\r\nLIMIT 1000 ",
           "refId": "A",
           "sql": {
             "columns": [
@@ -1038,7 +1038,11 @@
           "mappings": [
             {
               "options": {
-                "true": {
+                "0": {
+                  "index": 1,
+                  "text": "weg"
+                },
+                "1": {
                   "index": 0,
                   "text": "Bus ist angekommen"
                 }
@@ -1063,7 +1067,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
+        "h": 5,
         "w": 12,
         "x": 0,
         "y": 11
@@ -1091,7 +1095,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT value AS \"Zustand\", \"timestamp\" FROM rfid_bus_sensor WHERE value=true ORDER BY timestamp DESC\r\nLIMIT 1000",
+          "rawSql": "SELECT value AS \"Zustand\", \"timestamp\" FROM rfid_bus_sensor ORDER BY timestamp DESC\r\nLIMIT 2",
           "refId": "A",
           "sql": {
             "columns": [
@@ -1153,11 +1157,11 @@
             {
               "options": {
                 "0": {
-                  "index": 9,
+                  "index": 5,
                   "text": "weg"
                 },
                 "1": {
-                  "index": 8,
+                  "index": 4,
                   "text": "Bahn ist angekommen"
                 },
                 "2210": {
@@ -1168,29 +1172,13 @@
                   "index": 1,
                   "text": "Hauptbahnhof"
                 },
-                "2230": {
-                  "index": 2,
-                  "text": "1. Parkplatzslot"
-                },
-                "2240": {
-                  "index": 3,
-                  "text": "2. Parkplatzslot"
-                },
-                "2250": {
-                  "index": 4,
-                  "text": "3. Parkplatzslot"
-                },
                 "3210": {
-                  "index": 5,
+                  "index": 2,
                   "text": "Westbahnhof"
                 },
                 "3220": {
-                  "index": 6,
+                  "index": 3,
                   "text": "Westbahnhof"
-                },
-                "true": {
-                  "index": 7,
-                  "text": "Bahn ist angekommen"
                 }
               },
               "type": "value"
@@ -1213,7 +1201,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
+        "h": 5,
         "w": 12,
         "x": 12,
         "y": 11
@@ -1241,7 +1229,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT id AS \"Ort\", value AS \"Zustand\", \"timestamp\" FROM light_sensor ORDER BY timestamp DESC\r\nLIMIT 1000",
+          "rawSql": "SELECT id AS \"Ort\", value AS \"Zustand\", \"timestamp\" FROM light_sensor WHERE id IN (${light_sensor:csv}) ORDER BY timestamp DESC\r\nLIMIT 1000",
           "refId": "A",
           "sql": {
             "columns": [
@@ -1301,20 +1289,40 @@
       {
         "current": {
           "text": [
-            ""
+            "Licht aus"
           ],
           "value": [
-            ""
+            "0"
           ]
         },
-        "definition": "SELECT\n  CASE \n    WHEN id = 3210 THEN 'Westbahnhof'\n    WHEN id = 3220 THEN 'Westbahnhof'\n    WHEN id = 2210 THEN 'Hauptbahnhof'\n    WHEN id = 2220 THEN 'Hauptbahnhof'\n    ELSE 'Unknown'\n  END AS text,\n  id AS value\nFROM light_sensor\n\n",
-        "description": "",
+        "definition": "SELECT\n  CASE \n    WHEN value = 1 THEN 'Licht an'\n    WHEN value = 0 THEN 'Licht aus'\n  END AS __text,\n  value AS __value\nFROM light_intens_sensor",
+        "description": "Licht an, wenn es dunkel ist.\nLicht aus, wenn es hell ist.",
         "includeAll": true,
-        "label": "Lichtschranke zur Erkennung der Bahn",
+        "label": "Lichtintensität",
         "multi": true,
-        "name": "hbf_westbf",
+        "name": "light",
         "options": [],
-        "query": "SELECT\n  CASE \n    WHEN id = 3210 THEN 'Westbahnhof'\n    WHEN id = 3220 THEN 'Westbahnhof'\n    WHEN id = 2210 THEN 'Hauptbahnhof'\n    WHEN id = 2220 THEN 'Hauptbahnhof'\n    ELSE 'Unknown'\n  END AS text,\n  id AS value\nFROM light_sensor\n\n",
+        "query": "SELECT\n  CASE \n    WHEN value = 1 THEN 'Licht an'\n    WHEN value = 0 THEN 'Licht aus'\n  END AS __text,\n  value AS __value\nFROM light_intens_sensor",
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": [
+            "Hauptbahnhof"
+          ],
+          "value": [
+            "2220"
+          ]
+        },
+        "definition": "SELECT\n  CASE \n    WHEN id = 2210 THEN 'Hauptbahnhof'\n    WHEN id = 2220 THEN 'Hauptbahnhof'\n    WHEN id = 3210 THEN 'Westbahnhof'\n    WHEN id = 3220 THEN 'Westbahnhof'\n  END AS __text,\n  id AS __value\nFROM light_sensor",
+        "includeAll": true,
+        "label": "Bahnerkennung",
+        "multi": true,
+        "name": "light_sensor",
+        "options": [],
+        "query": "SELECT\n  CASE \n    WHEN id = 2210 THEN 'Hauptbahnhof'\n    WHEN id = 2220 THEN 'Hauptbahnhof'\n    WHEN id = 3210 THEN 'Westbahnhof'\n    WHEN id = 3220 THEN 'Westbahnhof'\n  END AS __text,\n  id AS __value\nFROM light_sensor",
         "refresh": 1,
         "regex": "",
         "type": "query"
@@ -1329,6 +1337,6 @@
   "timezone": "browser",
   "title": "latest_Dashboard",
   "uid": "fea2yorbcosu8a",
-  "version": 7,
+  "version": 16,
   "weekStart": ""
 }
