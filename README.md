@@ -21,7 +21,8 @@ Ein Überblick über das System:
 - **Datenbank**: PostgreSQL zur Datenspeicherung.
 - **Visualisierungstool**: Grafana für Echtzeit-Dashboards.
 - **Datenbereitstellung**: Automatisiert mit Docker und Bereitstellungsdateien.
-- **Web Server**:bDer Flask-Webserver dient als Zwischenschritt für den Empfang der Daten vom Mikrocontroller.
+- **Web Server**: Der Flask-Webserver dient als Zwischenschritt für den Empfang der Daten vom Mikrocontroller.
+- **Proto.exe**: ist ein APP, der dazu dient, die Sensor Daten von Mikrocontroller an unserem Server schicken
 
 ---
 
@@ -74,16 +75,52 @@ Ein Überblick über das System:
 
 ## 6. Verwendung
 
-- **Dashboards anzeigen**:
-  - Navigieren Sie in Grafana zu **Dashboards**.
-  - Wählen Sie das gewünschte Dashboard aus (Stadt_Dashboard.json).
-- **Daten abfragen**:
-  - Verwenden Sie PostgreSQL, um historische Daten bei Bedarf abzufragen.
-- **Anpassung**:
-  - Fügen Sie neue Dashboards in den Ordner `provisioning/dashboards/` ein oder bearbeiten Sie vorhandene.
-  - Fügen Sie neue Sensoren hinzu, indem Sie das Datenbankschema und die Bereitstellungsdateien erweitern.
+### Sensor-Daten empfangen
+
+Mit der **Proto-App** können die Sensordaten vom Mikrocontroller empfangen und an den Server gesendet werden. Folgen Sie diesen Schritten:
+
+1. **USB anschließen**:
+   - Verbinden Sie den Mikrocontroller über USB mit dem Computer.
+
+2. **USB-Ports identifizieren**:
+   - Öffnen Sie die Eingabeaufforderung (CMD) im Verzeichnis (z. B. `cd /path/to/Frontend`), in dem die Proto-App gespeichert ist.
+   - Führen Sie den folgenden Befehl aus, um die angeschlossenen USB-Geräte aufzulisten:
+     ```bash
+     proto list
+     ```
+   - Notieren Sie die entsprechenden COM-Ports (z. B. `COM3`).
+
+3. **Daten von allen Controllern empfangen**:
+   - Öffnen Sie für jeden angeschlossenen USB-Port ein separates Terminal.
+   - Führen Sie den folgenden Befehl aus, um die Daten an den Server zu senden:
+     ```bash
+     proto listen -s COM3 --web -d http://127.0.0.1:3000
+     ```
+   - Ersetzen Sie `COM3` durch den entsprechenden Port, der in Schritt 2 identifiziert wurde.
 
 ---
+
+### Dashboards anzeigen
+- Navigieren Sie in Grafana zu **Dashboards**.
+- Wählen Sie das gewünschte Dashboard aus (z. B. `Stadt_Dashboard.json`).
+
+---
+
+### Daten abfragen
+- Verwenden Sie PostgreSQL, um historische Daten bei Bedarf abzufragen.
+
+---
+
+### Anpassung
+1. **Dashboards bearbeiten oder hinzufügen**:
+   - Fügen Sie neue Dashboard-Dateien in den Ordner `provisioning/dashboards/` ein.
+   - Bearbeiten Sie vorhandene Dashboards, um weitere Datenquellen oder Visualisierungen hinzuzufügen.
+2. **Neue Sensoren hinzufügen**:
+   - Aktualisieren Sie das Datenbankschema und die Bereitstellungsdateien (`init.sql` und `provisioning/datasources.yaml`), um neue Sensoren zu integrieren.
+
+---
+Mit diesen Schritten können die Sensordaten effizient empfangen und visualisiert werden. Passen Sie das System bei Bedarf an, um neue Anforderungen zu erfüllen.
+
 
 ## 7. Dateien und Verzeichnisse
 
