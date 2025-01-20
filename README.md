@@ -1,117 +1,95 @@
-# Frontend-Development
+# Smart City Projekt
 
-## Introduction
-Follow the instructions below to initialize and start the project.
-It was created for the Smart City Demonstrator project at Aachen University of Applied Sciences
+## 1. Projektübersicht
+**Projektname**: Smart City
 
-## Phase 1: Data Ingestion 
-### Goal: 
-Establish a system to receive sensor data from the Proto app via HTTP POST requests in JSON format (or another format, as determined with the backend team).
-### Tasks: 
-1. Set up an HTTP server to receive incoming data.
-2. Validate incoming JSON packets for: Completeness, Correctness
-3. Temporarily store the raw or validated data: 
-   - In memory
-   - in a shared folder (to be determined).
-### Tools: 
-- **[Flask](https://flask.palletsprojects.com/):** A lightweight Python framework for hosting the HTTP server.
-  - Preferred over Node.js to keep the project fully in Python.
-- **[Proto.exe]:** For testing the POST request functionality.  
-### Outcome: 
-- JSON packets are successfully received and ingested.
-- Data is validated and ready for the preprocessing phase.
+**Beschreibung**:  
+Dieses Projekt ist ein Smart City System, das Daten von verschiedenen Sensoren (z. B. Temperatur, Gas und Parken) sammelt und in Echtzeit mit Grafana visualisiert. Das System verwendet PostgreSQL für die Datenspeicherung und Grafana für die Datenvisualisierung.
 
-## Phase 2: Data Preprocessing 
-### Goal: 
-Clean and prepare the ingested data for storage and visualization. (idea for dashboard). 
-### Tasks: 
-- Parse and validate the data structure (e.g., check for required fields like `id` and `value`). 
-- Transform the data if necessary (e.g., convert types, handle missing values). 
-- Log invalid or malformed packets for debugging.
-### Tools: 
-- Python (native JSON libraries): To parse, validate, and transform JSON packets. 
-- Pandas: For transforming JSON into tabular data, if needed. 
-- Logging Framework: Capture any errors or invalid data for debugging.
-### Outcome:
-Cleaned and validated data ready for database insertion or analysis. 
+---
 
-## Phase 3: Data  Storage
-### Goal: 
-Store data in a PostgreSQL database for persistent and structured storage.
-### Tasks:
-- Create a PostgreSQL account and database schema to store ingested data.
-- Develop a .yml file for Docker to streamline the setup and execution of PostgreSQL.
-- Write scripts to insert preprocessed data into the database
-### Tools: 
-- PostgreSQL: For data storage
-- Docker: To manage the PostgreSQL instance using containers
-### Steps: 
-1. Pull the PostgreSQL Docker image:
-   ```bash
-   docker pull postgres
-   ```
-2. Start the PostgreSQL service:
-   ```bash
-   docker-compose up -d
-   ```
-### Outcome: 
-Data is securely stored in PostgreSQL, ready for analysis and visualization.
+## 2. Funktionen
+- Echtzeit-Datenerfassung und -visualisierung.
+- Vorgefertigte Dashboards zur Überwachung von Sensordaten.
+- Sicher gespeicherte Daten in einer PostgreSQL-Datenbank.
+- Einfach erweiterbare Architektur für das Hinzufügen neuer Sensoren oder Dashboards.
 
-## Phase 4: Data Analysis and Visualization
-### Goal:
-Analyze the stored data and provide meaningful visualizations through a Grafana Dashboard.
-### Tasks:
-- Set up Grafana to connect to the PostgreSQL database.
-- Define and calculate key metrics for visualization.
-- Create custom dashboards to display important insights
-### Tools:
-- Grafana: To create and manage dashboards.
-- PostgreSQL: Data storage and query source.
-- Docker Compose: Simplified management of multi-container applications.
-### Steps:
-1. Pull the Grafana Docker container:
-   ```bash
-   docker pull grafana/grafana
-   ```
-2. Start the Grafana service:
-   ```bash
-   docker-compose up -d
-   ```
-3. Connect Grafana to the PostgreSQL data source:
-- Open http://localhost:3031 in a browser.
-- Add PostgreSQL as a data source (Configuration > Data Sources).
-- Provide the connection details (HostURL: postgres:5432, Database name: smartcitydb, Username: ip, password: smartcity).
-4. Create dashboards:
-- Click "Create your new dashboard" 
-- Click "Import a dashboard"
-- Upload the JSON file: Smart-City-1734011670150.json
-- Select Datasource (the one you just configured in step 3)
-### Outcome:
-Real-time and historical data are visualized in Grafana dashboards for easy analysis.
+---
 
-## Phase 5: Deployment 
-### Goal:
-Deploy the project, making it accessible for end-users or stakeholders.
-### Tasks:
-Use Docker Compose to orchestrate the Flask server, PostgreSQL database, and Grafana.
-### Tools: 
-Docker Compose: To manage multi-container deployment.
-### Steps:
-### Outcome: 
-A fully deployed system with ingestion, preprocessing, storage, analysis, and visualization.
+## 3. Systemarchitektur
+Ein Überblick über das System:
+- **Datenbank**: PostgreSQL zur Datenspeicherung.
+- **Visualisierungstool**: Grafana für Echtzeit-Dashboards.
+- **Datenbereitstellung**: Automatisiert mit Docker und Bereitstellungsdateien.
+- **Web Server**:bDer Flask-Webserver dient als Zwischenschritt für den Empfang der Daten vom Mikrocontroller.
 
-## Useful Scripts
-1. Start all services:
-   ```bash
-   docker-compose up -d
-   ```
-2. Stop all services:
-   ```bash
-   docker-compose down
-   ```
-3. View logs (if needed):
-   ```bash
-   docker-compose logs
-   ```
+---
 
+## 4. Voraussetzungen
+- **Software**:
+  - Docker und Docker Compose müssen installiert sein. Docker (Desktop) für eine vereinfachte Handhabung der verschiedenen       Services.
 
+  - GitHub Desktop kann die Handhabung erleichtern.
+- **Kenntnisse**:
+  - Grundkenntnisse über Docker und Grafana.
+
+---
+
+## 5. Installation und Einrichtung
+
+### Schritt-für-Schritt-Anleitung:
+
+1. **Repository klonen**:
+   - Verwenden Sie Git:
+     ```bash
+     git clone <https://github.com/FHAC-IP-SmartCity/frontend.git>
+     cd <repository-folder>
+     ```
+   - Oder klonen Sie es einfach mit GitHub Desktop (https://github.com/FHAC-IP-SmartCity/frontend.git)
+
+2. **Dienste mit Docker Compose starten**:
+   - Öffnen Sie die Eingabeaufforderung und navigieren Sie zum `Frontend`-Ordner:
+     ```bash
+     cd /path/to/Frontend
+     docker-compose up --build
+     ```
+
+3. **Grafana im Browser öffnen**:
+   - Adresse: [http://localhost:3000]
+   - Anmeldedaten:
+     - **Benutzername**: `admin`
+     - **Passwort**: `admin` (oder ein von Ihnen festgelegtes Passwort).
+
+4. **Dashboard importieren**:
+   - Das Dashboard befindet sich in der Datei `frontend/prov/dashboards/Stadt_Dashboard.json`.
+   - Öffnen Sie Grafana, klicken Sie auf **Dashboards**, und wählen Sie **Dashboard importieren**.
+
+5. **Datenbankverbindung einrichten**:
+   - Die Verbindung zur Datenbank wird automatisch definiert, benötigt jedoch ein Passwort.
+   - Gehen Sie in Grafana zu **Datenquellen** (die Standard-Datenquelle ist voreingestellt).
+   - Geben Sie das Passwort `kunde` ein.
+   - Drücken Sie **Speichern und testen**. Der erste Versuch gibt möglicherweise einen Fehler aus – drücken Sie erneut, und es sollte funktionieren.
+
+---
+
+## 6. Verwendung
+
+- **Dashboards anzeigen**:
+  - Navigieren Sie in Grafana zu **Dashboards**.
+  - Wählen Sie das gewünschte Dashboard aus (Stadt_Dashboard.json).
+- **Daten abfragen**:
+  - Verwenden Sie PostgreSQL, um historische Daten bei Bedarf abzufragen.
+- **Anpassung**:
+  - Fügen Sie neue Dashboards in den Ordner `provisioning/dashboards/` ein oder bearbeiten Sie vorhandene.
+  - Fügen Sie neue Sensoren hinzu, indem Sie das Datenbankschema und die Bereitstellungsdateien erweitern.
+
+---
+
+## 7. Dateien und Verzeichnisse
+
+Hier sind die wichtigsten Dateien und Verzeichnisse im Projekt:
+
+- `docker-compose.yml`: Konfiguration zum Ausführen des Projekts mit Docker.
+- `prov/datasources.yaml`: Definiert die Grafana-Datenquellenkonfiguration.
+- `prov/dashboards/`: Enthält vorgefertigte Grafana-Dashboard-JSON-Dateien.
+- `init.sql`: Initialisiert das Datenbankschema und die Tabellen.
