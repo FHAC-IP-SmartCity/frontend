@@ -19,7 +19,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 2,
   "links": [],
   "panels": [
     {
@@ -148,6 +148,92 @@
         "x": 5,
         "y": 0
       },
+      "id": 12,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.4.0",
+      "targets": [
+        {
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "SELECT value FROM temperatur_sensor LIMIT 50 ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "temperatur_sensor"
+        }
+      ],
+      "title": "Temperatur °C",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "PCC52D03280B7034C"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 9,
+        "y": 0
+      },
       "id": 14,
       "options": {
         "colorMode": "value",
@@ -231,10 +317,10 @@
       "gridPos": {
         "h": 6,
         "w": 4,
-        "x": 9,
+        "x": 13,
         "y": 0
       },
-      "id": 13,
+      "id": 15,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -257,7 +343,7 @@
         {
           "editorMode": "builder",
           "format": "table",
-          "rawSql": "SELECT value FROM feuchtigkeit_sensor LIMIT 50 ",
+          "rawSql": "SELECT value FROM feuchtigkeit_sensor ORDER BY \"timestamp\" DESC LIMIT 2 ",
           "refId": "A",
           "sql": {
             "columns": [
@@ -279,98 +365,20 @@
                 "type": "groupBy"
               }
             ],
-            "limit": 50
+            "limit": 2,
+            "orderBy": {
+              "property": {
+                "name": "\"timestamp\"",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "orderByDirection": "DESC"
           },
           "table": "feuchtigkeit_sensor"
         }
       ],
-      "title": "Feuchtigkeit %",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "grafana-postgresql-datasource",
-        "uid": "PCC52D03280B7034C"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 4,
-        "x": 13,
-        "y": 0
-      },
-      "id": 12,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.4.0",
-      "targets": [
-        {
-          "editorMode": "builder",
-          "format": "table",
-          "rawSql": "SELECT value FROM temperatur_sensor LIMIT 50 ",
-          "refId": "A",
-          "sql": {
-            "columns": [
-              {
-                "parameters": [
-                  {
-                    "name": "value",
-                    "type": "functionParameter"
-                  }
-                ],
-                "type": "function"
-              }
-            ],
-            "groupBy": [
-              {
-                "property": {
-                  "type": "string"
-                },
-                "type": "groupBy"
-              }
-            ],
-            "limit": 50
-          },
-          "table": "temperatur_sensor"
-        }
-      ],
-      "title": "Temperatur °C",
+      "title": "Feuchtigkeit",
       "type": "stat"
     },
     {
@@ -424,7 +432,7 @@
           ],
           "show": false
         },
-        "frameIndex": 2,
+        "frameIndex": 0,
         "showHeader": true
       },
       "pluginVersion": "11.4.0",
@@ -642,7 +650,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT value AS \"Zustand\", \"timestamp\" FROM rfid_bus_sensor ORDER BY timestamp DESC\r\nLIMIT 100",
+          "rawSql": "SELECT value AS \"Zustand\" FROM rfid_bus_sensor ORDER BY timestamp DESC LIMIT 100",
           "refId": "A",
           "sql": {
             "columns": [
@@ -651,15 +659,6 @@
                 "parameters": [
                   {
                     "name": "value",
-                    "type": "functionParameter"
-                  }
-                ],
-                "type": "function"
-              },
-              {
-                "parameters": [
-                  {
-                    "name": "\"timestamp\"",
                     "type": "functionParameter"
                   }
                 ],
@@ -674,7 +673,15 @@
                 "type": "groupBy"
               }
             ],
-            "limit": 50
+            "limit": 1,
+            "orderBy": {
+              "property": {
+                "name": "id",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "orderByDirection": "DESC"
           },
           "table": "rfid_bus_sensor"
         }
@@ -771,10 +778,10 @@
             "type": "grafana-postgresql-datasource",
             "uid": "fe5lhmfii251cb"
           },
-          "editorMode": "code",
+          "editorMode": "builder",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT id AS \"Ort\", value AS \"Zustand\", \"timestamp\" FROM light_sensor WHERE id IN (${light_sensor:csv}) ORDER BY timestamp DESC\r\nLIMIT 100 ",
+          "rawSql": "SELECT id AS \"Ort\", value AS \"Zustand\", \"timestamp\" FROM light_sensor ORDER BY \"timestamp\" DESC LIMIT 1 ",
           "refId": "A",
           "sql": {
             "columns": [
@@ -816,7 +823,15 @@
                 "type": "groupBy"
               }
             ],
-            "limit": 50
+            "limit": 1,
+            "orderBy": {
+              "property": {
+                "name": "\"timestamp\"",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "orderByDirection": "DESC"
           },
           "table": "light_sensor"
         }
@@ -896,10 +911,10 @@
             "type": "grafana-postgresql-datasource",
             "uid": "fe5lhmfii251cb"
           },
-          "editorMode": "code",
+          "editorMode": "builder",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT value AS \"Zustand\", \"timestamp\" FROM light_intens_sensor ORDER BY timestamp DESC\r\nLIMIT 100",
+          "rawSql": "SELECT value AS \"Zustand\" FROM light_intens_sensor ORDER BY \"timestamp\" DESC LIMIT 1 ",
           "refId": "A",
           "sql": {
             "columns": [
@@ -908,15 +923,6 @@
                 "parameters": [
                   {
                     "name": "value",
-                    "type": "functionParameter"
-                  }
-                ],
-                "type": "function"
-              },
-              {
-                "parameters": [
-                  {
-                    "name": "\"timestamp\"",
                     "type": "functionParameter"
                   }
                 ],
@@ -931,7 +937,15 @@
                 "type": "groupBy"
               }
             ],
-            "limit": 50
+            "limit": 1,
+            "orderBy": {
+              "property": {
+                "name": "\"timestamp\"",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "orderByDirection": "DESC"
           },
           "table": "light_intens_sensor"
         }
@@ -1286,7 +1300,7 @@
       {
         "current": {
           "text": "Hauptbahnhof",
-          "value": "2210"
+          "value": "2220"
         },
         "definition": "SELECT\n  CASE \n    WHEN id = 2210 THEN 'Hauptbahnhof'\n    WHEN id = 2220 THEN 'Hauptbahnhof'\n    WHEN id = 3210 THEN 'Westbahnhof'\n    WHEN id = 3220 THEN 'Westbahnhof'\n  END AS __text,\n  id AS __value\nFROM light_sensor",
         "includeAll": false,
@@ -1301,13 +1315,13 @@
     ]
   },
   "time": {
-    "from": "2025-01-12T14:55:30.525Z",
-    "to": "2025-01-12T15:09:17.437Z"
+    "from": "2025-01-12T14:34:50.157Z",
+    "to": "2025-01-12T15:29:57.805Z"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Stadt_dashboard",
   "uid": "fea2yorbcosu8a",
-  "version": 4,
+  "version": 1,
   "weekStart": ""
 }

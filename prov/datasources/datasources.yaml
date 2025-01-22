@@ -8,7 +8,6 @@ datasources:
     database: prodDB     # Database name
     user: kunde          # PostgreSQL user
     password: kunde      # PostgreSQL password
-    isDefault: true
     editable: true
     jsonData:
       sslmode: disable

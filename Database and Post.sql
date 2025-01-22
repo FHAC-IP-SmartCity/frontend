@@ -2,7 +2,6 @@
 in cmd:
 .\frontend>docker exec -it Smart-City psql -U ip -d smartcitydb
 proto send -d http://127.0.0.1:3000/data -i 5 -v "Hello"
-proto list
 proto listen -s COM3 --web -d http://127.0.0.1:3000/data
 
 --SQL commands 01.12.2024 --to be updated when new command is required 
