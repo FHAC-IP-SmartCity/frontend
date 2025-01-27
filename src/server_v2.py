@@ -28,14 +28,14 @@ data_queue = queue.Queue()  # Queue for background processing
 # Table name mapping for record IDs
 TABLE_NAME_MAP = {
     1100: "RFID_sensor",
-    2210: "light_sensor",
-    2220: "light_sensor",
+    2210: "light_sensor_hbf",
+    2220: "light_sensor_hbf",
     2230: "light_park_sensor",
     2240: "light_park_sensor",
     2250: "light_park_sensor",
     3110: "RFID_bus_sensor",
-    3210: "light_sensor",
-    3220: "light_sensor",
+    3210: "light_sensor_west",
+    3220: "light_sensor_west",
     3310: "park_zahler_sensor",
     4410: "light_intens_sensor",
     4511: "temperatur_sensor",
