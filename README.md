@@ -41,7 +41,7 @@ Ein Überblick über das System:
      docker-compose up --build
      ```
 3. **Grafana im Browser öffnen**:
-   - Adresse: [http://localhost:3000]
+   - Adresse: [http://localhost:3001]
    - Anmeldedaten:
      - **Benutzername**: `admin`
      - **Passwort**: `admin` (oder ein von Ihnen festgelegtes Passwort).
